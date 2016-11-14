@@ -39,6 +39,7 @@ public class BarProgress : MonoBehaviour {
 				Message message = new Message(InstrumentType.Drum, scale[note], 128);
 				Debug.Log(message.ToString());
 				networkManager.GetComponent<NetworkView>().RPC("PlayNote", RPCMode.Server, message.ToString());
+				Handheld.Vibrate();
 			}
 		}
 	}
