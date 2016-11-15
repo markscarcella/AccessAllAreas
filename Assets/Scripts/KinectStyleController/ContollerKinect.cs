@@ -60,6 +60,8 @@ public class ContollerKinect : MonoBehaviour {
 		{
 			noteLeftHand.GetComponent<NoteFloatOffPlay> ().StartDeath ();
 			noteLeftHand = null;
+            var note = (Note)Random.RandomRange((int)Note.A0, (int)Note.C8);
+            GameObject.Find("NetworkManager").GetComponent<NetworkManager>().PlayNote(new Message(InstrumentType.SoundEffects, note, 255));
 		}
 
 		if (noteLeftHand != null)
@@ -80,7 +82,9 @@ public class ContollerKinect : MonoBehaviour {
 		{
 			noteRightHand.GetComponent<NoteFloatOffPlay> ().StartDeath ();
 			noteRightHand = null;
-		}
+            var note = (Note)Random.RandomRange((int)Note.A0, (int)Note.C8);
+            GameObject.Find("NetworkManager").GetComponent<NetworkManager>().PlayNote(new Message(InstrumentType.SoundEffects, note, 255));
+        }
 
 		if (noteRightHand != null)
 		{
