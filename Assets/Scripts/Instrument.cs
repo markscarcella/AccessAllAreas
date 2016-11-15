@@ -1,13 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System;
-using System.Linq;
 
 public class Instrument
 {
     public Instrument(InstrumentType type)
     {
         InstrumentType = type;
+
+        var clips = Resources.LoadAll<AudioClip>("Sounds/" + type);
+        for(Note note = Note.A0; note <= Note.C8; note++)
+        {
+            int index = (int)note - (int)Note.A0;
+            notes[note] = clips[index %= clips.Length];
+        }
     }
 
     private struct MessageInfo
@@ -24,7 +29,7 @@ public class Instrument
         public byte Velocity;
     }
 
-    private AudioSource[] notes = new AudioSource[Enum.GetValues(typeof(Note)).OfType<Note>().Cast<int>().Max()];
+    private Dictionary<Note, AudioClip> notes = new Dictionary<Note, AudioClip>();
     private Queue<MessageInfo> messages = new Queue<MessageInfo>();
 
     public bool Quantise = true;
@@ -68,7 +73,13 @@ public class Instrument
 
     private void PlayNote(MessageInfo note)
     {
-        Debug.Log(note);
+        Note n = note.Note;
+        if(n == Note.Tuned)
+        {
+            n = (Note)Random.Range((int)Note.A0, (int)Note.C8);
+        }
+        var clip = notes[n];
+        GameObject.Find("AudioSource").GetComponent<AudioSource>().PlayOneShot(clip, note.Velocity / 255f);
     }
 
     public void AddMessage(Message message)
