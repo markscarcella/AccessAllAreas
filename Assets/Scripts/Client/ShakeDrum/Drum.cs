@@ -41,8 +41,8 @@ public class Drum : MonoBehaviour {
 		else if (playNote)
 		{
 			playNote = false;
-			byte velocity = (byte)map(deltaAcceleration.sqrMagnitude, shakeDetectionThreshold, 10.0f, 0, 255);
-			Message message = new Message(InstrumentType.Drum, Note.Tuned, velocity);
+			//byte velocity = (byte)map(deltaAcceleration.sqrMagnitude, shakeDetectionThreshold, 10.0f, 0, 255);
+			Message message = new Message(InstrumentType.Drum, Note.Tuned, 255);
 			networkManager.PlayNote(message);
 		}
 	}

@@ -21,13 +21,7 @@ public class BackingBeat : MonoBehaviour
                 case 0:
                     band.AddMessage(new Message(InstrumentType.Drum, Note.Cs4, 128));
                     break;
-                case 1:
-                    band.AddMessage(new Message(InstrumentType.Drum, Note.E4, 255));
-                    break;
-                case 2:
-                    band.AddMessage(new Message(InstrumentType.Drum, Note.E4, 255));
-                    break;
-                case 3:
+                default:
                     band.AddMessage(new Message(InstrumentType.Drum, Note.E4, 255));
                     break;
             }

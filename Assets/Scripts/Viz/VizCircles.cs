@@ -22,17 +22,16 @@ public class VizCircles : MonoBehaviour {
 	public void VizNote(Message message)
 	{
 		GameObject[] myCircles = GameObject.FindGameObjectsWithTag("viz");
-
 		if (myCircles.Length > 0 && Random.Range (0, 10) < 7)
 		{
 			int index = Random.Range (0, myCircles.Length - 1);
 			float tempScale = Random.Range (0.8f, 1.0f);
 			myCircles[index].transform.localScale = new Vector3 (tempScale, tempScale, tempScale);
 			if(message.Instrument == InstrumentType.Drum)
-				myCircles[index].GetComponent<SpriteRenderer> ().material.color = new Color (255.0f/255.0f, 204.0f/255.0f, 1, 1);
-			if(message.Instrument == InstrumentType.Piano)
 				myCircles[index].GetComponent<SpriteRenderer> ().material.color = new Color (217.0f/255.0f, 94.0f/255.0f, 64.0f/255.0f, 1);
-			if(message.Instrument == InstrumentType.SoundEffects)
+			else if(message.Instrument == InstrumentType.Piano)
+				myCircles[index].GetComponent<SpriteRenderer> ().material.color = new Color (86.0f/255.0f, 113.0f/255.0f, 133.0f/255.0f, 1);
+			else if(message.Instrument == InstrumentType.SoundEffects)
 				myCircles[index].GetComponent<SpriteRenderer> ().material.color = new Color (217.0f/255.0f, 94.0f/255.0f, 64.0f/255.0f, 1);
 			else
 				myCircles[index].GetComponent<SpriteRenderer> ().material.color = new Color (1, 1, 1, 1);
@@ -44,10 +43,10 @@ public class VizCircles : MonoBehaviour {
 			float tempScale = Random.Range (0.5f, 1.0f);
 			myObj.transform.localScale = new Vector3 (tempScale, tempScale, tempScale);
 			if(message.Instrument == InstrumentType.Drum)
-				myObj.GetComponent<SpriteRenderer> ().material.color = new Color (255.0f/255.0f, 204.0f/255.0f, 1, 1);
-			if(message.Instrument == InstrumentType.Piano)
 				myObj.GetComponent<SpriteRenderer> ().material.color = new Color (217.0f/255.0f, 94.0f/255.0f, 64.0f/255.0f, 1);
-			if(message.Instrument == InstrumentType.SoundEffects)
+			else if(message.Instrument == InstrumentType.Piano)
+				myObj.GetComponent<SpriteRenderer> ().material.color = new Color (86.0f/255.0f, 113.0f/255.0f, 133.0f/255.0f, 1);
+			else if(message.Instrument == InstrumentType.SoundEffects)
 				myObj.GetComponent<SpriteRenderer> ().material.color = new Color (217.0f/255.0f, 94.0f/255.0f, 64.0f/255.0f, 1);
 			else
 				myObj.GetComponent<SpriteRenderer> ().material.color = new Color (1, 1, 1, 1);

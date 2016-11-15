@@ -32,7 +32,7 @@ public class Instrument
     private Dictionary<Note, AudioClip> notes = new Dictionary<Note, AudioClip>();
     private Queue<MessageInfo> messages = new Queue<MessageInfo>();
 
-    public bool Quantise = true;
+    public bool Quantise = false;
     public InstrumentType InstrumentType;
     
 	public void Update(BeatCounter counter, double beatThreshold)
@@ -85,6 +85,7 @@ public class Instrument
         audioSource.volume = note.Velocity / 255f;
         audioSource.clip = clip;
         audioSource.Play();
+		Debug.Log(note);
 
         //AudioSource source = new AudioSource();
         //source.PlayOneShot(clip, note.Velocity / 255f);
