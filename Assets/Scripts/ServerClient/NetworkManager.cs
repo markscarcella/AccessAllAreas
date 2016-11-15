@@ -15,6 +15,8 @@ public class NetworkManager : MonoBehaviour
 
 	bool serverStarted;
 
+	CallViz viz;
+
 	void Awake()
 	{
 		DontDestroyOnLoad(gameObject);
@@ -99,22 +101,22 @@ public class NetworkManager : MonoBehaviour
 		Debug.Log("hey");	
 	}
 
-//	[RPC]
-//    public void PlayNote(Message message)
-//    {
-//        PlayNote(message.ToString());
-//    }
+    public void PlayNote(Message message)
+    {
+		GetComponent<NetworkView>().RPC("PlayNoteServer", RPCMode.All, message.ToString());
+    }
 
     [RPC]
-    public void PlayNote(string message)
+    private void PlayNoteServer(string message)
     {
         if(Network.isServer)
         {
-			Debug.Log("server "+message);
             Band band = GameObject.Find("Band").GetComponent<Band>();
+			CallViz viz = GameObject.Find("viz").GetComponent<CallViz>();
             if(band != null)
             {
-                band.SendMessage(message);
+				viz.AddNote(message);
+                band.AddMessage(message);
             }
         }
     }

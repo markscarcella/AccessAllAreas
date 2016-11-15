@@ -38,12 +38,11 @@ public class CallViz : MonoBehaviour {
 		}
 	}
 
-	public void AddNote(int instrument, int note, int velocity)
+	public void AddNote(Message message)
 	{
 		if (type == "circles")
 		{
-
-			GetComponent<VizCircles> ().VizNote (instrument, note, velocity);
+			GetComponent<VizCircles> ().VizNote (message);
 		}
 	}
 }

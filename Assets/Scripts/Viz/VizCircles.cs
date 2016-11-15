@@ -19,7 +19,7 @@ public class VizCircles : MonoBehaviour {
 	
 	}
 
-	public void VizNote(int instrument, int note, int velocity)
+	public void VizNote(Message message)
 	{
 		GameObject[] myCircles = GameObject.FindGameObjectsWithTag("viz");
 
@@ -28,11 +28,11 @@ public class VizCircles : MonoBehaviour {
 			int index = Random.Range (0, myCircles.Length - 1);
 			float tempScale = Random.Range (0.8f, 1.0f);
 			myCircles[index].transform.localScale = new Vector3 (tempScale, tempScale, tempScale);
-			if(instrument == 0)
+			if(message.Instrument == InstrumentType.Drum)
 				myCircles[index].GetComponent<SpriteRenderer> ().material.color = new Color (255.0f/255.0f, 204.0f/255.0f, 1, 1);
-			if(instrument == 1)
+			if(message.Instrument == InstrumentType.Piano)
 				myCircles[index].GetComponent<SpriteRenderer> ().material.color = new Color (217.0f/255.0f, 94.0f/255.0f, 64.0f/255.0f, 1);
-			if(instrument == 2)
+			if(message.Instrument == InstrumentType.SoundEffects)
 				myCircles[index].GetComponent<SpriteRenderer> ().material.color = new Color (217.0f/255.0f, 94.0f/255.0f, 64.0f/255.0f, 1);
 			else
 				myCircles[index].GetComponent<SpriteRenderer> ().material.color = new Color (1, 1, 1, 1);
@@ -43,11 +43,11 @@ public class VizCircles : MonoBehaviour {
 			GameObject myObj = Instantiate (spriteCircle, new Vector3 (Random.Range (-8.0f, 8.0f), Random.Range (-4.0f, 4.0f), 0), Quaternion.identity) as GameObject;
 			float tempScale = Random.Range (0.5f, 1.0f);
 			myObj.transform.localScale = new Vector3 (tempScale, tempScale, tempScale);
-			if(instrument == 0)
+			if(message.Instrument == InstrumentType.Drum)
 				myObj.GetComponent<SpriteRenderer> ().material.color = new Color (255.0f/255.0f, 204.0f/255.0f, 1, 1);
-			if(instrument == 1)
+			if(message.Instrument == InstrumentType.Piano)
 				myObj.GetComponent<SpriteRenderer> ().material.color = new Color (217.0f/255.0f, 94.0f/255.0f, 64.0f/255.0f, 1);
-			if(instrument == 2)
+			if(message.Instrument == InstrumentType.SoundEffects)
 				myObj.GetComponent<SpriteRenderer> ().material.color = new Color (217.0f/255.0f, 94.0f/255.0f, 64.0f/255.0f, 1);
 			else
 				myObj.GetComponent<SpriteRenderer> ().material.color = new Color (1, 1, 1, 1);
