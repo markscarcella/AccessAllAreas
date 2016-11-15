@@ -21,6 +21,13 @@ public class Band : MonoBehaviour
         {
             item.Update(counter, TimeSpan.FromMinutes(counter.BeatSync / counter.BeatsPerMinute).TotalSeconds);
         }
+        foreach(var item in GetComponents<AudioSource>())
+        {
+            if(!item.isPlaying)
+            {
+                Destroy(item);
+            }
+        }
 	}
 
     public void AddMessage(string message)

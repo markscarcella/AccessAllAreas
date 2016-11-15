@@ -89,12 +89,12 @@ public class NetworkManager : MonoBehaviour
         if(Network.isServer)
         {
             var beatCounter = GameObject.Find("BeatCounter").GetComponent<BeatCounter>();
-            GetComponent<NetworkView>().RPC("SyncBeatClient", RPCMode.All, beatCounter.BeatCount, beatCounter.BeatsPerBar, beatCounter.BeatsPerMinute, beatCounter.BeatProgress);
+            GetComponent<NetworkView>().RPC("SyncBeatClient", RPCMode.All, beatCounter.BeatCount, beatCounter.BeatsPerBar, beatCounter.BeatsPerMinute, (float)beatCounter.BeatProgress);
         }
     }
 
     [RPC]
-    private void SyncBeatClient(int beatCount, int beatsPerBar, int beatsPerMinute, double beatProgress)
+    private void SyncBeatClient(int beatCount, int beatsPerBar, int beatsPerMinute, float beatProgress)
     {
         if(Network.isClient)
         {

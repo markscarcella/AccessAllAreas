@@ -81,6 +81,7 @@ public class Instrument
         var clip = notes[n];
 
         AudioSource audioSource = GameObject.Find("Band").AddComponent<AudioSource>();
+        audioSource.spatialBlend = 0;
         audioSource.volume = note.Velocity / 255f;
         audioSource.clip = clip;
         audioSource.Play();
