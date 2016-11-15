@@ -24,7 +24,8 @@ public class TouchTrail : MonoBehaviour {
 			//Vector3 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			transform.position = new Vector3(touchPos.x, touchPos.y, 0.0f);
 			//trailRenderer.startWidth = Camera.main.WorldToViewportPoint(transform.position).y;
-			trailRenderer.trailMaterial.color = Color.HSVToRGB(Camera.main.WorldToViewportPoint(transform.position).y, 0.5f, 1.0f);
+			//trailRenderer.trailMaterial.color = Color.HSVToRGB(Camera.main.WorldToViewportPoint(transform.position).y, 0.5f, 1.0f);
+			trailRenderer.trailMaterial.color = new Color(217/255f, 94/255f, 64/255f);
 		}	
 		else
 		{

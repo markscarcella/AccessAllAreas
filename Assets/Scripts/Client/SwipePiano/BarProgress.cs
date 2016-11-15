@@ -36,9 +36,8 @@ public class BarProgress : MonoBehaviour {
 			foreach (var contact in coll.contacts)
 			{
 				int note = (int)Camera.main.WorldToScreenPoint(contact.point).y * 8 / Screen.height;
-				Message message = new Message(InstrumentType.Drum, scale[note], 128);
-				Debug.Log(message.ToString());
-				networkManager.GetComponent<NetworkView>().RPC("PlayNote", RPCMode.Server, message.ToString());
+				Message message = new Message(InstrumentType.Piano, scale[note], 128);
+				networkManager.PlayNote(message);
 //				#if UNITY_ANDROID||UNITY_IOS
 //				Handheld.Vibrate();
 //				#endif
