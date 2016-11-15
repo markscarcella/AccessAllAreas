@@ -19,16 +19,16 @@ public class BackingBeat : MonoBehaviour
             switch(beat.BeatCount % beat.BeatsPerBar)
             {
                 case 0:
-                    band.AddMessage(new Message(InstrumentType.Drum, Note.C4, 255));
+                    band.AddMessage(new Message(InstrumentType.Drum, Note.Cs4, 128));
                     break;
                 case 1:
-                    band.AddMessage(new Message(InstrumentType.Drum, Note.C4, 100));
+                    band.AddMessage(new Message(InstrumentType.Drum, Note.E4, 255));
                     break;
                 case 2:
-                    band.AddMessage(new Message(InstrumentType.Drum, Note.C4, 180));
+                    band.AddMessage(new Message(InstrumentType.Drum, Note.E4, 255));
                     break;
                 case 3:
-                    band.AddMessage(new Message(InstrumentType.Drum, Note.C4, 100));
+                    band.AddMessage(new Message(InstrumentType.Drum, Note.E4, 255));
                     break;
             }
         }

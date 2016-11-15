@@ -79,7 +79,14 @@ public class Instrument
             n = (Note)Random.Range((int)Note.A0, (int)Note.C8);
         }
         var clip = notes[n];
-        GameObject.Find("AudioSource").GetComponent<AudioSource>().PlayOneShot(clip, note.Velocity / 255f);
+
+        AudioSource audioSource = GameObject.Find("Band").AddComponent<AudioSource>();
+        audioSource.volume = note.Velocity / 255f;
+        audioSource.clip = clip;
+        audioSource.Play();
+
+        //AudioSource source = new AudioSource();
+        //source.PlayOneShot(clip, note.Velocity / 255f);
     }
 
     public void AddMessage(Message message)

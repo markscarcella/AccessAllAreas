@@ -4,7 +4,7 @@ using System;
 public class BeatCounter : MonoBehaviour
 {
     public int BeatsPerBar = 4;
-    public int BeatsPerMinute = 60;
+    public int BeatsPerMinute = 120;
     public float BeatSync = 0.25f;
 
     public int BeatCount;
@@ -45,5 +45,11 @@ public class BeatCounter : MonoBehaviour
 
         BarCount = BeatCount / BeatsPerBar;
         BarProgress = (BeatCount % BeatsPerBar + BeatProgress) / BeatsPerBar;
+    }
+
+    public void Sync()
+    {
+        NetworkManager manager = GameObject.Find("NetworkManager").GetComponent<NetworkManager>();
+        manager.SyncBeat();
     }
 }
