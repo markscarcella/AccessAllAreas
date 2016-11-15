@@ -1,25 +1,25 @@
 ﻿using UnityEngine;
 using System;
-using System.Linq;
+using System.Collections.Generic;
 
 public class Band : MonoBehaviour
 {
-    private Instrument[] instruments = new Instrument[Enum.GetValues(typeof(InstrumentType)).OfType<InstrumentType>().Cast<int>().Max()];
+    private Dictionary<InstrumentType, Instrument> instruments = new Dictionary<InstrumentType, Instrument>();
 
-	public void Start()
+	void Start()
     {
-	    for(int i = 0; i < instruments.Length; i++)
+        foreach(InstrumentType instrument in Enum.GetValues(typeof(InstrumentType)))
         {
-            instruments[i] = new Instrument((InstrumentType)i);
+            instruments[instrument] = new Instrument(instrument);
         }
-	}
+    }
 	
-	public void Update()
+	void Update()
     {
         var counter = GameObject.Find("BeatCounter").GetComponent<BeatCounter>();
-        for(int i = 0; i < instruments.Length; i++)
+        foreach(var item in instruments.Values)
         {
-            instruments[i].Update(counter, TimeSpan.FromMinutes(counter.BeatSync / counter.BeatsPerMinute).TotalSeconds);
+            item.Update(counter, TimeSpan.FromMinutes(counter.BeatSync / counter.BeatsPerMinute).TotalSeconds);
         }
 	}
 
@@ -29,6 +29,6 @@ public class Band : MonoBehaviour
     }
     public void AddMessage(Message message)
     {
-        instruments[(int)message.Instrument].AddMessage(message);
+        instruments[message.Instrument].AddMessage(message);
     }
 }
