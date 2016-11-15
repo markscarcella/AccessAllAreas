@@ -29,7 +29,7 @@ public class BarProgress : MonoBehaviour {
 		transform.position = new Vector2(Mathf.Lerp(-startX, startX, (float)beatCounter.BarProgress), 0.0f);
 	}
 
-	void OnCollisionStay(Collision coll)
+	void OnCollisionStay2D(Collision2D coll)
 	{
 		if (beatCounter.Beat)
 		{
@@ -39,7 +39,9 @@ public class BarProgress : MonoBehaviour {
 				Message message = new Message(InstrumentType.Drum, scale[note], 128);
 				Debug.Log(message.ToString());
 				networkManager.GetComponent<NetworkView>().RPC("PlayNote", RPCMode.Server, message.ToString());
-				Handheld.Vibrate();
+//				#if UNITY_ANDROID||UNITY_IOS
+//				Handheld.Vibrate();
+//				#endif
 			}
 		}
 	}

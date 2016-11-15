@@ -14,6 +14,11 @@ public class TouchManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+//		if (Input.GetMouseButtonDown(0))
+//		{
+//			GameObject clone = Instantiate(touchTrail) as GameObject;
+//			clone.GetComponent<TouchTrail>().touchIdx = 0;	
+//		}
 		if (Input.touchCount > crntTouchCount)
 		{
 			for (int i = crntTouchCount; i < Input.touchCount; i++)
